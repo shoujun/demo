@@ -4,6 +4,7 @@ package com.example.demo.web;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,16 @@ public class CustomerController {
     public Customer greetingCustomer(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName) {
 
-        return new Customer(counter.incrementAndGet(), firstName, lastName);
+        Customer customer = new Customer(counter.incrementAndGet(), firstName, lastName);
+        System.out.println(customer);
+        return customer;
+    }
+
+    @PostMapping("/customer")
+    public Customer greetingCustomer() {
+
+        Customer customer = new Customer(counter.incrementAndGet(), "abc", "123");
+        System.out.println(customer);
+        return customer;
     }
 }
